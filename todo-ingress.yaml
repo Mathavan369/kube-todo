@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress
+  labels:
+    app: todoapp
+  namespace: itodo  
+  #annotations:
+  ##  kubernetes.io/ingress.class: "traefik"
+    
+spec:
+  rules:
+  - host: gotodoapp.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: todoapp-service
+            port: 
+              number: 8081
