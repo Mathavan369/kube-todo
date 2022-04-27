@@ -1,0 +1,18 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    autoscaling.alpha.kubernetes.io/conditions: "true"
+  name: todoapp-deploy
+  namespace: itodo
+spec:
+  maxReplicas: 10
+  minReplicas: 5
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: todoapp-deploy
+  targetCPUUtilizationPercentage: 150
+status:
+  currentReplicas: 3
+  desiredReplicas: 10
